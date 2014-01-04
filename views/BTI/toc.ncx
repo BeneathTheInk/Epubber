@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en">
+
+	<head>
+		<meta name="dtb:uid" content="bookid"/>
+		<meta name="dtb:depth" content="2"/>
+		<meta name="dtb:totalPageCount" content=""/>
+		<meta name="dtb:maxPageNumber" content="0"/>
+	</head>
+
+	<docTitle>
+		<text><% print(data.title) %></text>
+	</docTitle>
+
+	<navMap>
+<%  for ( var i = 0, l = data.chapters.length; i < l; i++ ) {
+print('\t <navPoint id="navPoint-'+i+'" playOrder="'+i+'"> \n \t \t <navLabel><text>'+data.chapters[i].title+'</text></navLabel> \n \t \t <content src="chapter'+i+'.xhtml"/> \n \t </navPoint>');
+} 
+%>
+	</navMap>
+</ncx>

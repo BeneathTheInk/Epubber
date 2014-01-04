@@ -1,0 +1,89 @@
+<head>
+<style type="text/css">
+	.container {
+		margin-bottom: 50px;
+	}
+
+	.stats {
+		font-size: 12px;
+		color: #777;
+	}
+
+	th.date {
+		width: 11%;
+	}
+
+	th.action {
+		width: 8%;
+	}
+
+	th.data {
+		width: 25%;
+	}
+
+	th.meta {
+		width: 20%;
+	}
+
+	.filters {
+		float: right;
+		width: 40%;
+		margin: 20px -6px;
+	}
+
+	.filters > div {
+		padding-left: 6px;
+		padding-right: 6px;
+	}
+
+	.filter-status {
+		clear: both;
+		margin: 20px 0;
+	}
+</style>
+
+<script>
+	console.log(<%= JSON.stringify(data) %>);
+	$(document).ready(function() {
+		$('#killData').click(function(){
+			$.ajax({ 
+	           url: '/destroy',
+	           type: 'POST',
+	           cache: false, 
+	           data:{"destroy":true}
+	           
+	        });
+	        console.log("Send data kill request!");
+		});
+	});
+</script
+</head>
+<body>
+<div class="container">
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="date">Date</th>
+				<th class="book">Book ID</th>
+				<th class="Title">Title</th>
+				<th class="Author">Author</th>
+				<th class="Chapters">Chapters</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% _.each(data, function(m) { %>
+			<tr>
+				<td><small><%= m.date  %></small></td>
+				<td><%= m.id %></td>
+				<td><strong><%= m.title %></strong></td>
+
+				<td><strong><%= m.author %></strong></td>
+				<td><%= m.chapters.count() %></td>
+			</tr>
+			<% }); %>
+		</tbody>
+	</table>
+	<a id="killData" class="btn btn-primary btn-m" role="button">Clear Data</a>
+</div>
+</body>

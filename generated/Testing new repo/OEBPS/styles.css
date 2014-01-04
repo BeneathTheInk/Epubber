@@ -1,0 +1,28 @@
+/* ---- Fonts ---- */
+@font-face {
+    font-family: "Felipa";
+    src: url('Tangerine_Bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+h1 {
+	font-family: "Felipa";
+	font-weight: bold;
+	font-size: 3.0em;
+	text-align: center;
+}
+h2 {
+	font-size: 1.6em;
+	text-align: center;
+}
+h3 {
+	font-size: 1.3em;
+	text-align: center;
+}
+figcaption{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+figure{
+	text-align: center;
+}

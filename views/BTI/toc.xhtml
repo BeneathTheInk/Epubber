@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml" xmlns:ibooks="http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0" epub:prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0">
+	<head>
+		<title>TOC</title>
+	</head>
+	<body>
+	<nav id="toc" epub:type="toc">
+	    <h1 class="chapter">Table of Contents</h1>
+	    <ol>
+	     	<%  for ( var i = 0, l = data.chapters.length; i < l; i++ ) {
+	            print('<li><a href="chapter'+i+'.xhtml">'+data.chapters[i].title+'</a></li> \n \t \t');
+	        } 
+	   		%>
+	    </ol>
+       </nav>
+       
+<nav epub:type="landmarks">
+	<h1>Guide</h1>
+	<ol>
+		<li><a epub:type="ibooks:reader-start-page" href="chapter0.xhtml"><% print(data.chapters[0].title) %></a></li>
+		<!-- Start at 1 because we do the start page -->
+		<%  for ( var i = 1, l = data.chapters.length; i < l; i++ ) {
+            print('<li><a epub:type="bodymatter" href="chapter'+i+'.xhtml">'+data.chapters[i].title+'</a></li> \n \t \t');
+        } 
+   		%>
+	</ol>
+</nav>
+</body>
+</html>

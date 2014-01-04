@@ -1,0 +1,123 @@
+<% var serialize = function(obj) {
+	var str = [];
+	for(var p in obj)
+	 str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+	return str.join("&");
+} %>
+
+<style type="text/css">
+	.container {
+		margin-bottom: 50px;
+	}
+
+	.stats {
+		font-size: 12px;
+		color: #777;
+	}
+
+	th.date {
+		width: 11%;
+	}
+
+	th.action {
+		width: 8%;
+	}
+
+	th.data {
+		width: 25%;
+	}
+
+	th.meta {
+		width: 20%;
+	}
+
+	.filters {
+		float: right;
+		width: 40%;
+		margin: 20px -6px;
+	}
+
+	.filters > div {
+		padding-left: 6px;
+		padding-right: 6px;
+	}
+
+	.filter-status {
+		clear: both;
+		margin: 20px 0;
+	}
+</style>
+
+<div class="container">
+	<br/>
+	<form class="form-horizontal" role="form" action="/add" method="post">
+	  <div class="form-group">
+	    <label for="inputTitle" id="inputTitleParent" class="col-sm-2 control-label">Book Title:</label>
+	    <div class="col-sm-5">
+	    	<input name="book[title]" class="form-control changer" id="inputTitle" placeholder="Book Title">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="inputAuthor" id="inputAuthorParent" class="col-sm-2 control-label">Author Name:</label>
+	    <div class="col-sm-5">
+	    	<input name="book[author]" class="form-control changer" id="inputAuthor" placeholder="Author Name">
+	    </div>
+	  </div>
+
+	  <div id="chapters"> </div>
+
+	  <br/>
+	  <a onclick="chapters.new()" class="btn btn-primary btn-m" role="button">+ Add Chapter</a>
+
+	  <br/><br/><br/><br/>
+
+	</form>
+	
+	<button id="goForm" class="btn btn-default">Submit</button>
+
+
+	<div class="stats">
+	</div>
+</div>
+<script>
+	var book={};
+	book.chapters={};
+	var chapters={};
+	chapters.count=0;
+	chapters.new=function newChapter(){
+		$('#chapters').append('<hr/><div class="form-group"><label for="inputChapterTitle'+chapters.count+'" id="inputChapterTitle'+chapters.count+'Parent" class="col-sm-2 control-label">Chapter '+chapters.count+'</label><div class="col-sm-5"><input name="chapters['+chapters.count+'][title]" class="form-control changer" id="inputChapterTitle'+chapters.count+'" placeholder="Title"></div></div><div class="form-group"><label for="inputChapterContent'+chapters.count+'" id="inputChapterContent'+chapters.count+'Parent" class="col-sm-2 control-label">Chapter Content</label><div class="col-sm-8"><textarea id="inputChapterContent'+chapters.count+'" name="chapters['+chapters.count+'][content]" class="form-control"  rows="3"></textarea></div></div>');
+		chapters.count++;
+		chapters.bindChangers();
+	};
+	chapters.bindChangers=function(){
+		$( ".changer").unbind("change");
+
+		$('.changer').change(function(){
+  			$('#'+this.id+'Parent').html(this.value);
+  			$('#'+this.id+'Parent').addClass('text-success');
+  		});
+	};
+	$(document).ready(function() {
+  		chapters.bindChangers();
+	});
+
+	$('#goForm').click(function(){
+		<% print('book.id="'+query.book.id+'"') %>;
+		book.title=$('#inputTitle').val();
+        book.author=$('#inputAuthor').val();
+        book.date=new Date;
+		for(var i=0;i<chapters.count;i++){
+			book.chapters[i]={'title':$('#inputChapterTitle'+i).val(),'content':$('#inputChapterContent'+i).val()};
+		}
+		$.ajax({ 
+           url: '/add',
+           type: 'POST',
+           cache: false, 
+           data:book 
+           
+        });
+        console.log("Created book!\n",book);
+	});
+
+
+</script>

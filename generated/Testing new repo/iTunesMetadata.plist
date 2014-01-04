@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>artistName</key>
+	<string>Alex</string>
+	<key>book-info</key>
+	<dict>
+		<key>cover-image-hash</key>
+		<string>DC97D231FB2F1A036B3116CE45347A0E</string>
+		<key>cover-image-path</key>
+		<string>46/@public@vhost@g@gutenberg@html@files@46@46-h@images@bookcover.jpg</string>
+		<key>mime-type</key>
+		<string>application/epub+zip</string>
+		<key>package-file-hash</key>
+		<string>D71F954DF9F25FE2FF845E685B96F96C</string>
+		<key>publisher-unique-id</key>
+		<string>Book ID</string>
+		<key>unique-id</key>
+		<integer>-6775268339512486161</integer>
+		<key>update-level</key>
+		<integer>2</integer>
+	</dict>
+	<key>genre</key>
+	<string>Ghost stories</string>
+	<key>itemName</key>
+	<string>Testing new repo</string>
+	<key>playlistName</key>
+	<string>Testing new repo</string>
+	<key>releaseDate</key>
+	<string>2013</string>
+</dict>
+</plist>
